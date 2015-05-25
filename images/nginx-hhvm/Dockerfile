@@ -4,6 +4,8 @@
 # https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
 # for a list of version numbers.
 FROM phusion/baseimage:0.9.13
+MAINTAINER jgoldfar@gmail.com
+LABEL version="1.0"
 
 # Set correct environment variables.
 ENV HOME /root
@@ -41,7 +43,7 @@ RUN mkdir /etc/service/hhvm
 ADD hhvm.sh /etc/service/hhvm/run
 RUN chmod 700 /etc/service/hhvm/run
 
-# Add /var/www and  to image
+# Add /var/www and sites-enabled to image
 VOLUME ["/var/www", "/etc/nginx/sites-enabled"]
 
 RUN sudo /usr/share/hhvm/install_fastcgi.sh
