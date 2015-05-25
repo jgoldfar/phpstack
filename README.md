@@ -1,28 +1,21 @@
-# PHPStack
+# PHPStack - Swiper
 
-PHPStack gives you everything you need for developing PHP applications locally. The idea came from the need of having an OS-agnostic and virtualized alternative to the great [MNPP](http://getmnpp.org/) stack as regular LAMP stacks quite simply can't keep up with the Nginx + PHP-FPM/HHVM combo in terms of performance. I hope you'll find it as useful an addition to your dev-arsenal as I've found it!
+PHPStack gives you everything you need for developing PHP/Hack applications locally. The idea came from the need of having an OS-agnostic and virtualized alternative to the great [MNPP](http://getmnpp.org/) stack as regular LAMP stacks quite simply can't keep up with the Nginx + PHP-FPM/HHVM combo in terms of performance. I hope you'll find it as useful an addition to your dev-arsenal as I've found it!
+
+This version of PHPStack has been stripped down a bit to just run the hack FastCGI interpreter and include the Swiper application, for easier deployment.
 
 ## What's inside
 
-* [CoreOS](https://coreos.com/) (optional)
 * [Shipyard](http://shipyard-project.com/)
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
-* [MongoDB](http://www.mongodb.org/)
-* [PHP-FPM](http://php-fpm.org/)
 * [HHVM](http://www.hhvm.com/)
 * [Memcached](http://memcached.org/)
-* [Redis](http://redis.io/)
-* [Elasticsearch](http://www.elasticsearch.org/)
-
-## Getting started
 
 ### Requirements
 
 * [Docker](https://docker.com/)
 * [Docker Compose](http://docs.docker.com/compose/)
-* [Vagrant](http://www.vagrantup.com/) (optional)
-* [VirtualBox](https://www.virtualbox.org/) (optional)
 
 ### Instructions
 
@@ -30,9 +23,6 @@ PHPStack gives you everything you need for developing PHP applications locally. 
 # Clone the repository (using hub)
 $ git clone kasperisager/phpstack
 $ cd phpstack
-
-# (Optional) Boot up a CoreOS box
-$ vagrant up
 
 # Boot up the Docker containers
 $ docker-compose up
