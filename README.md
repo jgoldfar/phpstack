@@ -4,9 +4,11 @@ PHPStack gives you everything you need for developing PHP/Hack applications loca
 
 This version of PHPStack has been stripped down a bit to just run the hack FastCGI interpreter and include the Swiper application, for easier deployment.
 
+See also https://github.com/nikolaplejic/docker.hhvm, from where some of the configuration was borrowed.
+
 ## What's inside
 
-* [Shipyard](http://shipyard-project.com/)
+* [Shipyard](http://shipyard-project.com/) (optional)
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
 * [HHVM](http://www.hhvm.com/)
@@ -20,19 +22,17 @@ This version of PHPStack has been stripped down a bit to just run the hack FastC
 ### Instructions
 
 ```sh
-# Clone the repository (using hub)
-$ git clone kasperisager/phpstack
-$ cd phpstack
-
-# Boot up the Docker containers
+# Clone the repository, then:
+# boot up the Docker containers
 $ docker-compose up
-```
 
-> If you're using the CoreOS box, make sure to set your `DOCKER_HOST` so Docker Compose knows where to boot up the Docker containers.
+# To start shipyard (workaround for container name bug, apparently)
+$ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock shipyard/deploy start
+```
 
 Once everything is up and running, you can access Shipyard at `http://<IP>:8080`. The default user credentials are `admin:shipyard`. Once logged in, you will need to [add an engine](http://shipyard-project.com/docs/engines/) with an address of `http://<IP>:2375` to see the local containers.
 
-The IP is in both cases either `127.0.0.1` or your Vagrant IP (`192.168.33.10` by default).
+The IP is `127.0.0.1`
 
 ---
 Copyright &copy; 2014-2015 [Kasper Kronborg Isager](http://github.com/kasperisager). Licensed under the terms of the [MIT License](LICENSE.md).
