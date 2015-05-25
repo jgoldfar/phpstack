@@ -1,5 +1,5 @@
 front:
-  build: images/nginx
+  build: images/nginx-hhvm
   ports:
     - "0.0.0.0:80:80"
     - "0.0.0.0:9000:9000"
