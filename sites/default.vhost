@@ -1,7 +1,9 @@
 server {
   server_name default;
+  listen      80;
   root        /var/www/default;
-  index       index.php;
+  index       index.php index.htm;
+  error_log    /var/www/logs/nginx-error.log debug;
 
   client_max_body_size 100M;
   fastcgi_read_timeout 1800;
@@ -15,13 +17,15 @@ server {
     log_not_found off;
     access_log    off;
   }
+  include     /etc/nginx/conf.d/default-*.conf;
+  include     /var/www/conf/nginx/conf.d/default-*.conf;
 
-  location ~ \.php$ {
-    try_files     $uri =404;
+  location ~ \.(hh|php)$ {
+    fastcgi_pass  unix:/run/hhvm/sock;
     include       fastcgi_params;
-    fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_pass  unix:/var/run/php5-fpm.sock;
-    # fastcgi_pass  unix:/var/run/hhvm/hhvm.sock;
+  }
+  #deny access to .ht access files 
+  location ~ /\.ht {
+       deny all;
   }
 }
