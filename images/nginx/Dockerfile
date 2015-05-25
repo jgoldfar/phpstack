@@ -28,6 +28,11 @@ RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /var/run/php5-fpm
 RUN mkdir -p /var/run/hhvm
 
+RUN sudo /usr/share/hhvm/install_fastcgi.sh
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 ADD container-files /
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
